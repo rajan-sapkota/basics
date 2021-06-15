@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Calculator</title>
+<script>
+
+</script>
+<style>
+#box{	position:fixed;
+	top:15%;
+	left: 30%;
+	height:400px;
+	width:450px;
+	background:#3d4543;
+	padding:20px;
+	box-shadow:10px 10px 10px black;
+	border-radius:20px;	
+ }
+input{	height:50px;
+	width:100%;
+	border:3px solid black;
+	outline:none;
+	font-size:40px;
+}
+#read{	background:#bccd95;
+	height:60px;
+}
+
+#button{width:19%;
+	color:green;
+	box-shadow: 0px 5px 3px black;
+	border:0;
+	border-radius:5px;
+}
+#operator{width:19%;
+	color:green;
+	box-shadow: 0px 5px 3px black;
+	border:0;
+	background:orange;
+	border-radius:5px;
+}
+#ac{width:19%;
+	color:green;
+	box-shadow: 0px 5px 3px black;
+	border:0;
+	background:red;
+	border-radius:5px;
+}
+#result{width:19%;
+	color:green;
+	box-shadow: 0px 5px 3px black;
+	border:0;
+	background:yellow;
+	border-radius:5px;
+}
+
+
+p{ 	padding:3px;
+
+</style>
+</head>
+<body>
+
+<div id="box"><font family="" align="right" color="white">CASIO</font><br><input id="read">
+<br><br>
+<p>
+<input id="button" type="button" value="1" onclick="read.value+='1'">
+<input id="button" type="button" value="2" onclick="read.value+='2'">
+<input id="button" type="button" value="3" onclick="read.value+='3'">
+<input id="ac" type="button" value="AC" onclick="read.value='00'">
+<input id="ac" type="button" value="C" onclick="read.value=''">
+
+</p>
+<p>
+<input id="button" type="button" value="4" onclick="read.value+='4'">
+<input id="button" type="button" value="5" onclick="read.value+='5'">
+<input id="button" type="button" value="6" onclick="read.value+='6'">
+<input id="operator" type="button" value="+" onclick="read.value+='+'">
+<input id="operator" type="button" value="-" onclick="read.value+='-'">
+
+</p>
+<p>
+<input id="button" type="button" value="7" onclick="read.value+='7'">
+<input id="button" type="button" value="8" onclick="read.value+='8'">
+<input id="button" type="button" value="9" onclick="read.value+='9'">
+<input id="operator" type="button" value="X" onclick="read.value+='*'">
+<input id="operator" type="button" value="/" onclick="read.value+='/'">
+
+</p>
+<input id="button" type="button" value="0" onclick="read.value+='0'">
+
+<input id="button" type="button" value="." onclick="read.value+='.'">
+<input id="button" type="button" value="00" onclick="read.value+='00'">
+<input id="button" type="button" value="%M" onclick="read.value+='%'">
+<input id="result" type="button" value="=" onclick="read.value=eval(read.value)">
+
+
+
+</br>
+
+</div>
+</body>
+</html>
