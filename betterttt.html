@@ -1,0 +1,261 @@
+<html>
+<head>
+<title>Tic Tac Toe</title>
+
+<style>
+body{ background:rgba(34,31,31, 1);
+}
+#menu{
+	display:inline;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	
+	width:500px;
+	background:none;
+
+}
+input[type="submit"]{height:80px;
+			width:500px;
+			color:green;
+			font-size:50px;
+			background: yellow;	
+			cursor:pointer;
+			border-radius:20px;
+			font-family: papyrus;
+
+}
+input[type="submit"]:hover{ color:yellow;
+		background:green;
+}
+#board{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	height:300px;
+	width:300px;
+	background:red;
+	display:none;
+}
+#turn{ font-size: 45px;
+	color:blue;
+	position:fixed;
+	transform: translate(-50%,-50%);
+	top:10%;
+	left:50%;
+	display:none;
+	transition-duration: 2s;
+	width:100%;
+}
+.column{
+	
+	height:100%;
+	width:32%;
+	border:2px solid white;
+	float:left;
+	font-weight:bold;
+	font-size:75px;
+	text-align:center;
+	color:white;
+	cursor:pointer;
+	font-family: papyrus;
+	}
+.column:hover{background:#a42828;
+}
+.row{height:32%;
+
+}
+button{
+	height:40px;
+	widht:80px;
+	font-size:30px;
+	border-radius:5px;
+	background:blue;
+	border:none;
+}
+button:hover{color:red;
+	background:black;
+}
+#cr{ height:50px;
+	font-size: 40px;
+	width:100%;
+	background:red;
+	
+	
+}
+#about{display: none;
+	color:white;
+}
+</style>
+
+<script>
+var turn=1;
+var win=-1;
+var count= 0;
+var matrix=[
+	[-1, -1, -1],
+	[-1, -1, -1],
+	[-1, -1, -1]	
+]
+var winner;
+function startgame(){
+	document.getElementById("menu").style.display="none";
+	document.getElementById("turn").style.display="inline";
+	document.getElementById("board").style.display="inline";
+}
+function credits(){
+	document.getElementById("cr").style.display="none";
+	document.getElementById("about").style.display="inline";
+}
+function input(elem, row, column){
+	
+	if (elem.innerHTML!="") return;
+	if (win != -1) return;
+	count++;
+	if (turn==1){
+	
+	winner="X";
+	elem.innerHTML='X' + '<audio id="play" autoplay><source src="popup.mp3"></audio> ';
+	matrix[row][column]=1;
+	document.getElementById("turn").innerHTML="Player O's turn";
+	turn=2;
+	}
+	
+	else{
+	winner="O";
+	elem.innerHTML="O" + '<audio id="play" autoplay><source src="popup.mp3"></audio> ';
+	matrix[row][column]=2;
+	document.getElementById("turn").innerHTML="Player X's turn";
+	turn=1;
+	
+	}
+	console.log(matrix[row][column]);
+	if(matrix[1][1]==matrix[1][2] && matrix [1][1]== matrix[1][0]) {
+		if (matrix[1][1] == 1 || matrix [1][1]==2){
+		
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").innerHTML=(winner + ' won the game.' +'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		document.getElementById("turn").style.top="60%";
+		}
+	}	
+	if(matrix[0][1]==matrix[0][2] && matrix [0][1]== matrix[0][0]){
+		if (matrix[0][1] == 1 || matrix [0][1]==2){
+		
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").innerHTML=(winner + ' won the game.' +'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		document.getElementById("turn").style.top="60%";
+		}
+	}	
+	if(matrix[2][1]==matrix[2][2] && matrix [2][1]== matrix[2][0]) {
+		if (matrix[2][1] == 1 || matrix [2][1]==2){
+		
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").innerHTML=(winner  + ' won the game.'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		document.getElementById("turn").style.top="60%";
+		}
+	}	
+	if(matrix[0][0]==matrix[1][0] && matrix [0][0]== matrix[2][0]){
+		if (matrix[0][0] == 1 || matrix [0][0]==2){
+		document.getElementById("turn").innerHTML=(winner  +' won the game.'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").style.top="60%";
+		}
+	}	
+	if(matrix[0][1]==matrix[1][1] && matrix [0][1]== matrix[2][1]) {
+		if (matrix[1][1] == 1 || matrix [1][1]==2){
+		document.getElementById("turn").innerHTML=(winner  + ' won the game.'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").style.top="60%";
+		}
+	}	
+	if(matrix[0][2]==matrix[1][2] && matrix [0][2]== matrix[2][2]){
+		if (matrix[0][2] == 1 || matrix [0][2]==2){
+		document.getElementById("turn").innerHTML=(winner  + ' won the game.'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").style.top="60%";
+		}
+	}
+	//diagonal
+	if(matrix[0][0]==matrix[1][1] && matrix [0][0]== matrix[2][2]){
+		if (matrix[0][0] == 1 || matrix [0][0]==2){
+		document.getElementById("turn").innerHTML=(winner  + ' won the game.'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").style.top="60%";
+		}
+	}
+	if(matrix[0][2]==matrix[1][1] && matrix [0][2]== matrix[2][0]){
+		if (matrix[0][2] == 1 || matrix [0][2]==2){
+		document.getElementById("turn").innerHTML=(winner  + ' won the game.'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>'+'<audio id="play" autoplay><source src="victory.mp3"></audio> ');
+		win=5;
+		document.getElementById("turn").style.background="url('https://thumbs.gfycat.com/ForsakenValidGiraffe-max-1mb.gif')";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").style.top="60%";
+		
+		
+		}
+	}
+	if (count==9 && win!=5){
+	document.getElementById("turn").innerHTML=('Draw'+'<div id="reset"><button onclick="location.reload()">Reset</button></div>');
+		win=5;
+		document.getElementById("turn").style.background="rgba(95, 79, 79, 0.8)";
+		document.getElementById("turn").style.height="100%";
+		document.getElementById("turn").style.top="60%";
+	
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<div id="menu">
+<img src="https://i.pinimg.com/originals/e7/39/bc/e739bc47a433eeaaa2059f0cff16519c.gif" height="400px" width="100%"><br>
+<input type="submit" value="start game" onclick="startgame()">
+<input type="submit" value="credits" onclick="credits()" id="cr">
+
+<div id="about" ><marquee direction="right">Creator: Rajan Sapkota <br> Email: rajan.s9841@gmail.com
+<br></marquee><button onclick="location.reload()">Back</button>
+</div>
+
+</div>
+
+<div id= "board">
+	<audio id="play" autoplay><source src="https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/audioblocks-bubble-pop-swoosh-3_BYKnXfURv8_NWM.mp3"></audio>
+	<div class = "row">
+	<div class="column" id="" onclick="input(this, 0, 0)" style="border-left:none; border-top:none;"></div>
+	<div class="column" id="" onclick="input(this, 0, 1)" style="border-top:none"></div>
+	<div class="column" id="" onclick="input(this, 0, 2)" style="border-top:none;border-right:none;"></div>
+	</div>
+	
+	<div class = "row">
+	<div class="column" id="" onclick="input(this, 1, 0)" style="border-left:none"></div>
+	<div class="column" id="" onclick="input(this, 1, 1)" ></div>
+	<div class="column" id="" onclick="input(this, 1, 2)" style="border-right:none"></div>
+	</div>
+	
+	<div class = "row">
+	<div class="column" id="" onclick="input(this, 2, 0)" style="border-left:none; border-bottom:none;"></div>
+	<div class="column" id="" onclick="input(this, 2, 1)" style="border-bottom:none;"></div>
+	<div class="column" id="" onclick="input(this, 2, 2)" style="border-right:none; border-bottom:none;"></div>
+	</div>
+	
+</div>
+<div id="turn" align="center">Player X turn</div>
+</body>
+</html>

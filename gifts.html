@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Gifts</title>
+<style>
+
+#mainbox{ height:500px;
+		width:50%;
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%, -50%);
+		border: 10px;
+		
+		font-size:40px;
+		display:none;
+		
+}
+
+#button{ border:3px;
+	height:30%;
+	width:30%;
+
+}
+#row{
+	padding:4px;
+	height:30%; 
+	width:100%;
+	
+	
+}
+#column{
+	padding:4px;
+	height:100%; 
+	width:30%;
+	background:white;
+	border:2px solid white;
+	float:left;
+}
+#form{position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	height:200px;
+	width:500px;
+	background:#ec6565;
+	color:#3ef40b;
+	font-weight:bold;
+	font-size:40px;
+	text-align:center;
+	
+}
+#name{
+	height:50px;
+	width:360px;
+	color:white;
+	font-size: 35px;
+	background:pink;
+	outline:white;
+	border-radius:10px;
+}
+input[type="radio"]{
+	height:30px;
+	width:30px;
+}
+input[type="button"]{background:green;
+	color:yellow;
+	height:50px;
+	width:300px;
+	font-size:40px;
+	border-radius:10px;
+	
+}
+input[type="button"]:hover{background:yellow;
+		color:green;
+}
+#result{ display:none;
+		position:absolute;
+		height:500px;
+		width:500px;
+		top:50%;
+		left:50%;
+		transform: translate(-50%, -50%);
+		opacity:0.95;
+	
+	
+}
+p{ 	font-size:14px;
+	color:black;
+	text-align:left;
+}
+</style>
+
+</head>
+<body>
+
+<script>
+
+var code;
+var code2=[];
+var num=0;
+
+var chances=3;
+var name="";
+var gende='';
+function toggle(){
+	name=document.getElementById("name").value;
+	if (gende=='' || name== ''){
+	alert("Please all the details to continue...");
+	return;
+	}
+	
+	document.getElementById("form").style.display="none";
+	document.getElementById("mainbox").style.display="inline";
+	console.log(gende);
+	document.getElementById("coment").innerHTML=("Hi "+ name);
+}
+
+function ran(which, code){
+		if (code2[code]==code)return;
+		if (num==1) return;
+		if (chances ==0){
+		
+		return;
+		}
+		
+		chances--;
+		var number=Math.ceil(Math.random() * 6 )
+		code2[code]=code;
+		console.log(number);
+		if( number==1 && gende=="Female"){
+		which.innerHTML=('<img src="http://static.skaip.org/img/emoticons/180x180/f6fcff/lovegift.gif" height="100%" width="100%">');
+		num=1;
+		document.getElementById("coment").innerHTML=("Wow "+ name +" 🤩 You did it.");
+		document.getElementById("result").style.display="inline";
+		
+		
+		document.getElementById("result").innerHTML=('<img src="http://static.skaip.org/img/emoticons/180x180/f6fcff/lovegift.gif" height="100%" width="100%"> <br><p> By: Rajan<br> Email: <a href="rajan.s9841@gmail.com">rajan.s9841@gmail.com</a><br></p>');
+		
+		}
+		else if( number==1 && gende=="Male"){
+		which.innerHTML=('<img src="https://media0.giphy.com/media/69f6kp3FRMJEk8uemU/giphy.gif" height="100%" width="100%">');
+		num=1;
+		document.getElementById("coment").innerHTML=("Wow "+ name +" 🤩 You did it.");
+		document.getElementById("result").style.display="inline";
+		
+		
+		document.getElementById("result").innerHTML=('<img src="https://media0.giphy.com/media/69f6kp3FRMJEk8uemU/giphy.gif" height="100%" width="100%"><p> <br>By: Rajan<br> Email: <a href="rajan.s9841@gmail.com">rajan.s9841@gmail.com</a><br></p>');
+		
+		
+		}
+		
+		else{
+		which.innerHTML=('<img src="https://i.gifer.com/origin/84/842441e38f7a8a0896a9d8a0a940f76d_w200.gif" height="100%" width="100%">');
+		document.getElementById("coment").innerHTML="You  have "+ chances + " chances left.";
+		switch(chances){
+			case(0):document.getElementById("coment").innerHTML=(name + ", You are Unlucky 😥");}
+		}
+		
+}
+
+</script>
+
+
+<div id="form">
+<form>
+Name: 
+<input id="name" type="text" placeholder="Enter Your Name" name=""><br>
+<input id="radioo" name="gender" type="radio" onclick="gende='Male'">Male
+
+<input id="radioo" name="gender" type="radio" onclick="gende='Female'">Female<br>
+<input type="button" value="let's go" onclick="toggle()">
+<br>
+<p>By: Rajan Sapkota<br> Email: <a href="rajan.s9841@gmail.com">rajan.s9841@gmail.com</a><br></p>
+</form>
+</div>
+
+<div id="mainbox">
+<div id="coment"></div>
+
+	<div id="row">
+	<div id= "column" onclick="ran(this, 0)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	<div id= "column" onclick="ran(this, 1)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	<div id= "column" onclick="ran(this, 2)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	</div>
+	<div id="row">
+	<div id= "column" onclick="ran(this, 3)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	<div id= "column" onclick="ran(this, 4)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	<div id= "column" onclick="ran(this, 5)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	</div>
+	<div id="row">
+	<div id= "column" onclick="ran(this, 6)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	<div id= "column" onclick="ran(this, 7)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	<div id= "column" onclick="ran(this, 8)"><img src="https://media1.giphy.com/media/VIe5NOnlPxJ9FcONBq/200.gif" alt="gif" height="100%" width="100%"></div>
+	</div>
+	
+
+
+
+</div>
+<div id="result"><br>
+</div>
+
+
+</body>
+</html>

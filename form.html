@@ -1,0 +1,82 @@
+<html>
+<head><title>Link</title>
+<style>
+.bo{
+	padding:4px;
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	background:linear-gradient(to bottom left, green, #0df2e3);
+	height:500px;
+	width:600px;
+	border-radius:15px;
+	color:yellow;
+	font-size:30px;
+	}
+	
+
+div{padding:5px;}	
+	
+	
+input{background:#a5a0f3;
+		color:red;
+		font-size:30px;
+		height:40px;
+		width:90%;
+		border-radius:10px;
+		outline: none
+	}
+button{color:yellow;
+		background:red;
+		height:50px;
+		width:300px;
+		font-size:40px;
+		border-radius:10px;
+		transition:1s;
+		
+}
+button:hover{
+		color:white;
+		background:green;
+
+}
+</style>
+</head>
+
+<body>
+<div class="bo">
+	<form action="https://sheetdb.io/api/v1/3zqmb297acefu" method="post" id="sheetdb-form">
+	<div>Name:<input class="name" placeholder="name" name="data[Name]" required></div>
+	<div>E-mail:<input class="email" placeholder="email" name="data[Email]" type="email" required></div>
+	<div>New Password:<input class="password" placeholder="new passowrd" name="data[password]" type="password" required></div>
+	<div>Confirm Password:<input class="cpassword" placeholder="confirm password" name="data[password]" type="password" required></div>
+	<div>Date of Birth:<input class="dob" placeholder="Date of birth" type="date" name="data[dob]" ></div>
+
+<button type="submit" >Submit</button>
+
+</form>
+</div>
+<script>
+  var form = document.getElementById('sheetdb-form');
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+        method : "POST",
+        body: new FormData(document.getElementById("sheetdb-form")),
+    }).then(
+        response => response.json()
+    ).then((html) => {
+      // you can put any JS code here
+      document.write('<audio id="play" autoplay><source src="thanku.3gpp"></audio>');
+	  alert('success')
+	  
+	  
+    });
+  });
+</script>
+
+</body>
+
+
+</html>
