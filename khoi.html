@@ -1,0 +1,257 @@
+<html>
+<head>
+<title>Game</title>
+
+<style>
+*{margin:0;
+	padding:0;}
+
+#board{
+	position:absolute;
+	border:1px solid red;
+	height:400px;
+	width:1000px;	
+	background:#59a3e3;
+	display:flex;
+	flex-wrap:wrap;
+	
+}
+#cloud{
+		position:absolute;
+		top:2px;
+		left:700px;
+		height:150px;
+		width:300px;
+		border:0px solid blue;
+		animation: wind 50s linear infinite;
+}
+@keyframes wind{
+		from{left:1000px;}
+		to{left:-300px;}
+}
+
+#score{position:absolute;
+		top:50px;
+		left:10px;
+		color:red;
+		font-size:40px;}
+#hill{
+	background:none;
+	height:200px;
+	width:100%;
+	position:absolute;
+	top:100px;
+	
+}
+#tree{
+	position:absolute;
+	left:100px;
+	top:100px;
+	height:200px;
+	width:100%;
+}
+#tree1, #tree2, #tree3, #tree4{
+	position:absolute;
+	animation: treemove 4s linear infinite;
+	left:740px;
+	top:0px;
+	
+	height:200px;
+	width:15%;
+	}
+#tree2{ animation-delay: 15s;}
+#tree3{ animation-delay: 2s;}
+#tree4{ animation-delay: 3s;}
+
+@keyframes treemove{
+	from{left:740px;}
+	to{left:-200px;}
+}
+
+#road{
+	background:#595760;
+	height:100px;
+	width:100%;
+	position:absolute;
+	top:300px;
+	}
+#zebra1, #zebra2, #zebra3, #zebra4{
+	background:white;
+	position:absolute;
+	top:50px;
+	width:15%;
+	height:10px;
+	
+	animation-fill-mode:forwards;
+	animation-delay: 0s;
+}
+#zebra1{
+	left:920px;
+	animation: stripes1 2s linear infinite;
+}
+#zebra2{
+	left:920px;
+	animation: stripes2 2s linear infinite;
+	animation-delay:0.5s;
+}
+#zebra3{
+	left:920px;
+	animation: stripes3 2s linear infinite;
+	animation-delay:1s;
+}
+#zebra4{
+	left:920px;
+	animation: stripes4 2s linear infinite;
+	animation-delay:1.5s;
+}
+
+@keyframes stripes1{
+	from{left:920px;}
+	to{left:-80px;}
+}
+@keyframes stripes2{
+	from{left:920px;}
+	to{left:-80px;}
+}
+@keyframes stripes3{
+	from{left:920px;}
+	to{left:-80px;}
+}
+@keyframes stripes4{
+	from{left:920px;}
+	to{left:-80px;}
+}
+
+
+#hero{
+		position:absolute;
+		top:200px;
+		left:0px;
+		height:200px;
+		width:130px;
+		border:0px solid blue;
+		
+	}
+.jump{
+	animation:jump 500ms linear;
+	}
+@keyframes jump{
+		0%{top:200px;}
+		30%{top:50px;}
+		60%{top:50px;}
+		100%{top:200px;}
+	}
+#enemy1{
+		position:absolute;
+		background-color:red;
+		top:340px;
+		left:920px;
+		height:50px;
+		width:30px;
+		border:0px solid blue;
+		animation: enmymove 2s linear infinite;
+		box-shadow:10px 5px 1px 3px #771818;
+	
+}
+#enemy1{animation-delay:0s;}
+
+@keyframes enmymove{
+	from{left: 920px;}
+	to{left:-80px;}
+}
+#menu{
+	position: absolute;
+	left: 200px;
+	top:100px;
+	background:red;
+	height:200px;
+	width:500px;
+	border:3px solid black;
+	text-align:center;
+	color:white;
+	font-size:50px;
+	pointer:cursor;
+	}
+input[type="submit"]{
+	height:40px;
+	width:200px;
+	background:yellow;
+	font-size:30px;
+	color:grey;
+	border-radius:5px;
+}
+input[type="submit"]:hover{
+	background:white;
+}
+</style>
+
+<script>
+var scoreval=0;
+var a=0;
+document.addEventListener('keydown', keyPress);
+document.addEventListener('click', keyPress);
+
+function keyPress(e){
+	e.preventDefault();
+	
+	if(e.key!=""){
+		
+		hero.classList.add("jump");
+		document.getElementById("over").innerHTML='<audio id="play" autoplay><source src="jump.3gpp"></audio> ';
+		setTimeout(function(){
+		hero.classList.remove("jump");
+		},500)
+	}
+	
+	var checkeverytime= setInterval(function(){
+		var herotop= parseInt(window.getComputedStyle(hero).getPropertyValue("top"));
+		var enemy1left= parseInt(window.getComputedStyle(enemy1).getPropertyValue("left"));
+		if(a!=100){scoreval++;
+		document.getElementById("score").innerHTML='score: '+ scoreval;}
+		if(herotop>=170 && enemy1left<=80 && enemy1left>=20){
+		
+		document.getElementById('enemy1').style.animation='apple';
+		
+		a=100;
+		document.getElementById('over').innerHTML='<audio id="play" autoplay><source src="gameover.3gpp"></audio>';
+		document.getElementById("score").innerHTML='GAME OVER!! Score: '+ scoreval +'<center><input type="submit" onclick="location.reload()" value="Restart"></center>';
+		document.getElementById('score').style.background="rgba(1, 1, 1, 0.9)"
+		return;
+		
+		}
+	},100);
+	
+
+}
+</script>
+
+</head>
+<body>
+
+<div id="board" class="" ></audio>
+	
+	<div id="cloud" ><img src="cloud2.png"height="150" width="300"></div>
+	
+	
+	<div id= "tree">
+		<img src="tree.png" id= "tree1" height="200" width="200">
+		<img src="tree.png" id= "tree2" height="200" width="200">
+		<img src="tree.png" id= "tree3" height="200" width="200">
+		<img src="tree.png" id= "tree4" height="200" width="200">
+	</div>
+	<div id="road">
+		<div id="zebra1"></div>
+		<div id="zebra2"></div>
+		<div id="zebra3"></div>
+		<div id="zebra4"></div>
+		
+	</div>
+	
+	<div id="hero"><img src="https://media0.giphy.com/media/rlSkeSlh87zJC/200w.gif" height="200px" width="130px"></div>
+	<div id="enemy1" ></div>
+	<div id="score"> </div>
+	<div id="over"> </div>
+</div>
+
+</body>
+</html>

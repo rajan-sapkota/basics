@@ -1,0 +1,244 @@
+<html>
+<head>
+<title>simpleGame</title>
+
+<style>
+div{color:white;
+	font-size:40px;}
+html{height:1000px;
+	width:1200px;}
+	
+body{background:white;
+	height:100%;
+	width:100%;
+	border: 0px dashed red;}
+
+*{padding:0;
+	margin:0;}
+
+#back{
+	background:#59a3e3;
+	height:450px;
+	width:100%;
+	
+}
+
+#hill{position: absolute;
+	top:260px;
+	
+}
+
+#im1 {
+	position: absolute;
+	top:10px;
+	left:40px;
+	animation:goal 25s infinite;
+	animation-fill-mode:both;
+	animation-delay:0s;
+	animation-timing-function:linear;
+	
+}
+#im2{
+	position:absolute;
+	top:30px;
+	left:40px;
+	animation:goal 100s infinite;
+}
+
+#im3{
+	position:absolute;
+	top:3px;
+	left:5px;
+	animation:goal3 300s infinite;
+}
+@keyframes goal{
+		from{left:50px;}
+		to{left:0px;}
+}
+#im4{
+	position:absolute;
+	top:30px;
+	left:4px;
+	animation:goal 200s infinite;
+}
+
+@keyframes goal{
+		from{left:50%;}
+		to{left:0px;}
+}
+#road{top:400px;
+	position:absolute;}
+#cycle{top:200px;
+	left:-200px;
+	
+	position:absolute;
+	animation: drive 5s linear infinite;
+	}
+#stone1{
+	position:absolute;
+	top:350px;
+	left:600px;
+	animation: stone_move1 50s linear;
+}
+
+#stone3{
+	position:absolute;
+	top:500px;
+	left:100px;
+	animation: stone_move2 100s linear;
+	animation-fill-mode:forwards;
+	animation-delay:10s;
+}
+button{
+        height:50px;
+        width:300px;
+        font-size:40px;
+        background:red;
+		color:white;
+		border-radius:5px;
+    }
+button:hover{color:red;
+	background:white;
+	
+	}
+
+
+@keyframes drive{
+	from{left:-200px;
+		}
+	to{left:1000px;
+	}
+}
+#board{
+	position:absolute;
+	top:400px;
+	left:400px;
+	animation: board 5s ;
+	animation-fill-mode:forwards;
+	}
+	
+@keyframes board{
+	from{top:400px}
+	to{top:100px;}
+}
+#score1{
+	
+	position:relative;
+}
+#rajan{
+	position:absolute;
+	top:250px;
+	left:200px;
+	display:none;
+
+}
+@keyframes rajan_arrive{
+	from{top:200px;}
+	to{top:10px;}
+
+}
+@keyframes rajan_move{
+	from{left:200px;}
+	to{left:1000px;}
+
+}
+#menu{position:absolute;
+		top:200;
+		left:900px;
+		border:0px solid black;
+		
+		}
+#friend{
+	position:fixed;
+	font-size:16px;
+	height:30px;
+	width:280px;
+	color:white;
+	top:630px;
+	left:430px;
+	animation:talk 2s;
+	animation-delay:3s;
+	animation-fill-mode:forwards;
+	display:none;
+	
+}
+@keyframes talk{
+	from{top:131px;}
+	to{top:130px;}
+}
+</style>
+
+</head>
+<body>
+<div id="back" onclick="ok()">Click Anywhere!
+	<img src="https://i.pinimg.com/originals/96/16/71/961671a0d15c33d419b8364e1345ccd2.png" height="20px" width="100px" id="im2" >
+	<img src="https://i.pinimg.com/originals/96/16/71/961671a0d15c33d419b8364e1345ccd2.png" height="200px" width="800px" id="im3" >
+		
+	<img src="board.png" height="200px" width="350px" id="board">
+	<div id="hill" onclick="ok()"><img src="hill.png" height="100%" width="1000px" onclick="ok()">
+	</div>
+		<div id="goal" onclick="ok()">
+		
+		<img src="https://i.pinimg.com/originals/96/16/71/961671a0d15c33d419b8364e1345ccd2.png" height="200px" width="300px" id="im1" >
+		<img src="https://i.pinimg.com/originals/96/16/71/961671a0d15c33d419b8364e1345ccd2.png" height="100px" width="100px" id="im4" >
+		
+		
+		</div>
+		
+		
+		<img src="rajan.png" height="400px" width="260px" id="rajan" onclick="move_rajan()"><div id="friend">My name is Raja. How may I help You? If You have any question please contact 9865478375 (WhatsApp, Viber). CLICK ON ME!!</div>
+		<img src="road_side.jpg" height="200px" width="1200px" id="road" onclick="switch()">
+		<img src="stone.png" height="80px" width="80px" id="stone1">
+		<img src="https://c0.piktochart.com/v2/uploads/610d4fbe-cf12-4782-b39b-6290f14a4bd7/8d627d43b29d4a811491b9dae6067d0d3d9ab2d3_original.gif" height="300px" width="200px" id="cycle">
+		
+		
+		<img src="stone.png" height="80px" width="80px" id="stone3">
+		
+</div>
+<script>
+var click=1;
+var me=1;
+var p1, p2, s1, s2;
+p1=parseInt(window.getComputedStyle(cycle).getPropertyValue("left"));
+s1=parseInt(window.getComputedStyle(stone1).getPropertyValue("left"));
+p2=parseInt(window.getComputedStyle(cycle).getPropertyValue("left"));
+s2=parseInt(window.getComputedStyle(stone2).getPropertyValue("left"));
+document.getElementById("score1").innerHTML="hello";
+				
+function ok(){
+		if (click==1){document.getElementById("cycle").style.top="150px";
+		click=2;
+		
+		}
+		else if (click==2){document.getElementById("cycle").style.top="300px";
+		click=1;
+		}
+		
+}
+function rajan(){
+		document.getElementById("rajan").style.display="inline";
+		document.getElementById("rajan").style.animation="rajan_arrive 4s forwards";
+		document.getElementById("friend").style.display="inline";	
+
+}
+function move_rajan(){
+		document.getElementById("rajan").style.display="inline";
+		document.getElementById("rajan").style.top="10px";
+		document.getElementById("rajan").style.animation="rajan_move 4s forwards";
+		
+			
+
+}
+
+		
+</script>
+<div id="menu">
+<button id="score1" onclick="rajan()">Call a friend</button>
+<div><a href="betterttt.html"><button>Game</button></a></div>
+<div><a href="gifts.html"><button>gift</button></a></div>
+<div><a href="form.html"><button>form</button></a></div>
+<div><a href="calculator.html"><button>Calculator</button></a></div>
+<div><button onclick="rajan()">Help</button></div>
+</div>
+</body>
+</html>
